@@ -11,8 +11,8 @@ export async function POST(request) {
       body: JSON.stringify({
         agent_id: body.agent_id || process.env.RETELL_AGENT_ID,
         metadata: {
-          source: "1st-property-lawyers-demo",
-          domain: "l.onrise.ai",
+          source: "mortgage-protection-demo",
+          domain: "mortgage.onrise.ai",
         },
         retell_llm_dynamic_variables: {
           caller_source: "web_demo",
