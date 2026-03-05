@@ -1,16 +1,16 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "1st Property Lawyers UK — AI Receptionist Demo",
+  title: "Mortgage Protection — AI Receptionist Demo",
   description:
-    "Demo: Meet Sophie, the AI receptionist built for 1st Property Lawyers UK. Try the live voice assistant.",
-  metadataBase: new URL("https://l.onrise.ai"),
+    "Demo: Meet Sophie, the AI receptionist built for Mortgage Protection. Try the live voice assistant.",
+  metadataBase: new URL("https://mortgage.onrise.ai"),
   openGraph: {
-    title: "1st Property Lawyers UK — AI Voice Assistant",
+    title: "Mortgage Protection — AI Voice Assistant",
     description:
-      "Speak with our AI assistant about conveyancing, property law, and remortgaging. Available 24/7.",
-    url: "https://l.onrise.ai",
-    siteName: "1st Property Lawyers UK",
+      "Speak with our AI assistant about life insurance, critical illness cover, and mortgage protection. Available 24/7.",
+    url: "https://mortgage.onrise.ai",
+    siteName: "Mortgage Protection",
     type: "website",
   },
   robots: {

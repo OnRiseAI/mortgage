@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 
 // ─── CONFIGURATION ───────────────────────────────────────────
-const AGENT_ID = "agent_c1e9e0b3da884638061df44508";
+const AGENT_ID = "agent_2719559f609279acab976ce230";
 
 // ─── ICONS ───────────────────────────────────────────────────
 function PhoneIcon({ className }) {
@@ -274,19 +274,19 @@ export default function Home() {
 
   // ─── DATA ──────────────────────────────────────────────────
   const services = [
-    { Icon: SunIcon, title: "Residential Conveyancing", desc: "Buying & selling property" },
-    { Icon: BatteryIcon, title: "Commercial Property", desc: "Leases & commercial sales" },
-    { Icon: BoltIcon, title: "Remortgaging", desc: "Legal support for remortgaging" },
-    { Icon: ThermometerIcon, title: "Transfer of Equity", desc: "Changing property ownership" },
+    { Icon: SunIcon, title: "Life Insurance", desc: "Financial security for your family" },
+    { Icon: BatteryIcon, title: "Critical Illness Cover", desc: "Protection against severe illnesses" },
+    { Icon: BoltIcon, title: "Income Protection", desc: "Safeguard your monthly earnings" },
+    { Icon: ThermometerIcon, title: "Mortgage Protection", desc: "Ensure your mortgage is paid off" },
   ];
 
   const suggestions = [
-    "I want to get a conveyancing quote",
-    "How long does it take to buy a house?",
-    "I need help with a commercial lease",
-    "What are your fees for remortgaging?",
-    "Can you explain the transfer of equity process?",
-    "I want to book a consultation",
+    "I want to get a mortgage protection quote",
+    "How much does life insurance cost?",
+    "I need help with critical illness cover",
+    "What are your income protection options?",
+    "Can you explain how mortgage protection works?",
+    "I want to book a free consultation",
   ];
 
   // ─── RENDER ────────────────────────────────────────────────
@@ -322,10 +322,10 @@ export default function Home() {
             </div>
             <div>
               <h1 className="font-display text-lg font-bold tracking-tight leading-none">
-                1st Property Lawyers UK
+                Mortgage Protection Advisors
               </h1>
               <p className="font-body text-xs text-white/40 mt-0.5">
-                Conveyancing · Property Law · Legal Advice
+                Life Insurance · Critical Illness · Income Protection
               </p>
             </div>
           </div>
@@ -348,7 +348,7 @@ export default function Home() {
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card mb-6">
                 <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="font-body text-xs text-white/60">
-                  Live Demo — Built for 1st Property Lawyers UK
+                  Live Demo — Built for Mortgage Protection Advisors
                 </span>
               </div>
 
@@ -360,7 +360,7 @@ export default function Home() {
 
               <p className="font-body text-base text-white/50 mt-6 max-w-md leading-relaxed">
                 Sophie is your AI receptionist. She knows your services, your
-                legal processes, conveyancing details, and can qualify leads and
+                protection plans, coverage details, and can qualify leads and
                 book consultations — 24/7, even when you&apos;re busy with clients.
               </p>
               <p className="font-body text-base text-white/40 mt-4 max-w-md leading-relaxed">
@@ -378,9 +378,9 @@ export default function Home() {
                 {[
                   "Answers calls 24/7 — no more missed enquiries",
                   "Qualifies callers by service type & urgency",
-                  "Explains the conveyancing process cleanly",
+                  "Explains the protection plans cleanly",
                   "Books consultation callbacks into your calendar",
-                  "Knows your full range of legal services",
+                  "Knows your full range of insurance services",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <CheckIcon className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
@@ -647,7 +647,7 @@ export default function Home() {
       <footer className="relative z-10 border-t border-white/5 mt-20">
         <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-body text-xs text-white/25">
-            AI Voice Demo · 1st Property Lawyers UK
+            AI Voice Demo · Mortgage Protection Advisors
           </p>
           <div className="flex items-center gap-4">
             <a
