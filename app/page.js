@@ -164,27 +164,34 @@ export default function Home() {
     setTranscript([]);
     setCallDuration(0);
 
+    // Step 1: Request microphone permission
     try {
-      // Dynamic import so SDK only loads client-side
-      // Request microphone permission explicitly first
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        // Stop the stream — the SDK will create its own
-        stream.getTracks().forEach((track) => track.stop());
-      } catch (micErr) {
-        console.error("Microphone access denied:", micErr);
-        setError(
-          "Microphone access denied. Please allow microphone access in your browser and try again."
-        );
-        setCallState("idle");
-        return;
-      }
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream.getTracks().forEach((track) => track.stop());
+    } catch (micErr) {
+      console.error("Microphone access denied:", micErr);
+      setError(
+        "Microphone access denied. Please allow microphone access in your browser and try again."
+      );
+      setCallState("idle");
+      return;
+    }
 
-      const { RetellWebClient } = await import("retell-client-js-sdk");
-      const client = new RetellWebClient();
-      retellClientRef.current = client;
+    // Step 2: Load SDK
+    let RetellWebClient;
+    try {
+      const module = await import("retell-client-js-sdk");
+      RetellWebClient = module.RetellWebClient;
+    } catch (sdkErr) {
+      console.error("SDK load error:", sdkErr);
+      setError("Failed to load voice SDK. Please refresh and try again.");
+      setCallState("idle");
+      return;
+    }
 
-      // Get access token from our API route
+    // Step 3: Create web call via API
+    let data;
+    try {
       const response = await fetch("/api/create-web-call", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -192,12 +199,33 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to create web call");
+        const errText = await response.text();
+        console.error("API error:", response.status, errText);
+        setError(`API error (${response.status}): Failed to create call. Check server logs.`);
+        setCallState("idle");
+        return;
       }
 
-      const data = await response.json();
+      data = await response.json();
 
-      // Event listeners
+      if (!data.access_token) {
+        console.error("No access token in response:", data);
+        setError("Server returned no access token. Check API configuration.");
+        setCallState("idle");
+        return;
+      }
+    } catch (apiErr) {
+      console.error("API fetch error:", apiErr);
+      setError("Network error: Could not reach the server. Is it running?");
+      setCallState("idle");
+      return;
+    }
+
+    // Step 4: Start WebRTC call
+    try {
+      const client = new RetellWebClient();
+      retellClientRef.current = client;
+
       client.on("call_started", () => {
         setCallState("active");
       });
@@ -222,21 +250,18 @@ export default function Home() {
       });
 
       client.on("error", (err) => {
-        console.error("Retell error:", err);
+        console.error("Retell WebRTC error:", err);
         setError("Connection lost. Please try again.");
         setCallState("idle");
         retellClientRef.current = null;
       });
 
-      // Start the WebRTC call
       await client.startCall({
         accessToken: data.access_token,
       });
-    } catch (err) {
-      console.error("Failed to start call:", err);
-      setError(
-        "Unable to start call. Please check your microphone permissions and try again."
-      );
+    } catch (rtcErr) {
+      console.error("WebRTC start error:", rtcErr);
+      setError(`WebRTC error: ${rtcErr.message || "Failed to connect voice call."}`);
       setCallState("idle");
     }
   }, []);
