@@ -654,7 +654,7 @@ export default function Home() {
                 <p className="font-body text-[10px] text-white/25 text-center">
                   This is a demo of our AI voice assistant.{" "}
                   <a
-                    href="https://wa.me/?text=Check%20out%20this%20AI%20receptionist%20demo:%20https%3A%2F%2Fl.onrise.ai"
+                    href="https://wa.me/?text=Check%20out%20this%20AI%20receptionist%20demo:%20https%3A%2F%2Fmortgage.onrise.ai"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-emerald-400 hover:text-emerald-300 transition-colors inline-flex items-center gap-1"
